@@ -2,12 +2,65 @@ package br.ufpe.cin.android.calculadora
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var screen = findViewById<TextView>(R.id.text_info)
+
+        var currentExp = ""
+
+        fun updateScreen () {
+            screen.text = currentExp
+        }
+
+
+        var buttons = arrayListOf<Button>(
+            findViewById(R.id.btn_0),
+            findViewById(R.id.btn_1),
+            findViewById(R.id.btn_2),
+            findViewById(R.id.btn_3),
+            findViewById(R.id.btn_4),
+            findViewById(R.id.btn_5),
+            findViewById(R.id.btn_6),
+            findViewById(R.id.btn_7),
+            findViewById(R.id.btn_8),
+            findViewById(R.id.btn_9),
+            findViewById(R.id.btn_Add),
+            findViewById(R.id.btn_Divide),
+            findViewById(R.id.btn_Multiply),
+            findViewById(R.id.btn_Dot),
+            findViewById(R.id.btn_LParen),
+            findViewById(R.id.btn_RParen),
+            findViewById(R.id.btn_Subtract)
+        )
+
+        for (button in buttons) {
+            button.setOnClickListener {
+                currentExp += button.text
+                updateScreen()
+            }
+        }
+
+        var clearButton = findViewById<Button>(R.id.btn_Clear)
+
+        clearButton.setOnClickListener {
+            currentExp = ""
+            updateScreen()
+        }
+
+
+        var equalsButton = findViewById<Button>(R.id.btn_Equal)
+
+        equalsButton.setOnClickListener {
+
+        }
+
     }
 
 
