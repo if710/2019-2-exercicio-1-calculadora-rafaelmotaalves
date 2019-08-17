@@ -58,9 +58,10 @@ class MainActivity : AppCompatActivity() {
         var equalsButton = findViewById<Button>(R.id.btn_Equal)
 
         equalsButton.setOnClickListener {
-
+            currentExp = eval (currentExp).toString()
+            updateScreen()
         }
-
+ 
     }
 
 
