@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
 
@@ -57,8 +58,19 @@ class MainActivity : AppCompatActivity() {
 
         var equalsButton = findViewById<Button>(R.id.btn_Equal)
 
+        val builder = AlertDialog.Builder(this)
+
         equalsButton.setOnClickListener {
-            currentExp = eval (currentExp).toString()
+            currentExp = try {
+                eval (currentExp).toString()
+            } catch (err : RuntimeException) {
+
+                builder.setTitle("Expressão mal formada")
+                builder.setMessage(err.message)
+                builder.create().show()
+
+                ""
+            }
             updateScreen()
         }
  
