@@ -19,9 +19,22 @@
             android:id="@+id/text_info"
     />
 
+    <EditText
+            android:id="@+id/text_calc"
+            app:layout_constraintTop_toBottomOf="@id/text_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_info"
+            android:enabled="false"
+            android:gravity="bottom"
+            android:inputType="numberDecimal"
+            android:lines="2"
+            android:maxLines="2"
+            android:textSize="40sp" />
+
     <Button
         android:id="@+id/btn_7"
-        app:layout_constraintTop_toBottomOf="@id/text_info"
+        app:layout_constraintTop_toBottomOf="@id/text_calc"
         app:layout_constraintLeft_toLeftOf="parent"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
@@ -35,7 +48,7 @@
     <Button
         android:id="@+id/btn_8"
         style="@style/Widget.AppCompat.Button.Borderless"
-        app:layout_constraintTop_toBottomOf="@id/text_info"
+        app:layout_constraintTop_toBottomOf="@id/text_calc"
         app:layout_constraintLeft_toRightOf="@id/btn_7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,7 +60,7 @@
 
     <Button
         android:id="@+id/btn_9"
-        app:layout_constraintTop_toBottomOf="@id/text_info"
+        app:layout_constraintTop_toBottomOf="@id/text_calc"
         app:layout_constraintLeft_toRightOf="@id/btn_8"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
@@ -59,7 +72,7 @@
 
     <Button
         android:id="@+id/btn_Divide"
-        app:layout_constraintTop_toBottomOf="@id/text_info"
+        app:layout_constraintTop_toBottomOf="@id/text_calc"
         app:layout_constraintLeft_toRightOf="@id/btn_9"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,13 +13,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var screen = findViewById<TextView>(R.id.text_info)
-
+        var textInfo = findViewById<TextView>(R.id.text_info)
+        var textCalc = findViewById<TextView>(R.id.text_calc)
         var currentExp = ""
-
-        fun updateScreen () {
-            screen.text = currentExp
-        }
 
 
         var buttons = arrayListOf<Button>(
@@ -45,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         for (button in buttons) {
             button.setOnClickListener {
                 currentExp += button.text
-                updateScreen()
+                textCalc.text = currentExp
             }
         }
 
@@ -53,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         clearButton.setOnClickListener {
             currentExp = ""
-            updateScreen()
+            textCalc.text = ""
         }
 
 
@@ -62,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
 
         equalsButton.setOnClickListener {
-            currentExp = try {
+            textInfo.text = try {
                 eval (currentExp).toString()
             } catch (err : RuntimeException) {
 
@@ -72,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
                 ""
             }
-            updateScreen()
+
         }
  
     }
