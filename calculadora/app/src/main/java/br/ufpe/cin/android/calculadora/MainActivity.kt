@@ -38,7 +38,8 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.btn_Dot),
             findViewById(R.id.btn_LParen),
             findViewById(R.id.btn_RParen),
-            findViewById(R.id.btn_Subtract)
+            findViewById(R.id.btn_Subtract),
+            findViewById(R.id.btn_Power)
         )
 
         for (button in buttons) {
