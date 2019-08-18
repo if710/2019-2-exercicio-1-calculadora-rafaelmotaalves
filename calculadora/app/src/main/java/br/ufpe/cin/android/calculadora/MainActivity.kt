@@ -9,14 +9,36 @@ import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
 
+    var currentExp: String = ""
+    var currentResult: String = ""
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putString("currentExp", currentExp)
+        outState.putString("currentResult", currentResult)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (savedInstanceState != null) {
+            currentExp = savedInstanceState.getString("currentExp") ?: ""
+            currentResult = savedInstanceState.getString("currentResult") ?: ""
+        }
+
         setContentView(R.layout.activity_main)
 
         var textInfo = findViewById<TextView>(R.id.text_info)
         var textCalc = findViewById<TextView>(R.id.text_calc)
-        var currentExp = ""
 
+
+        fun updateScreens () {
+            textCalc.text = currentExp
+            textInfo.text = currentResult
+        }
+
+        updateScreens()
 
         var buttons = arrayListOf<Button>(
             findViewById(R.id.btn_0),
@@ -42,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         for (button in buttons) {
             button.setOnClickListener {
                 currentExp += button.text
-                textCalc.text = currentExp
+                updateScreens()
             }
         }
 
@@ -50,7 +72,8 @@ class MainActivity : AppCompatActivity() {
 
         clearButton.setOnClickListener {
             currentExp = ""
-            textCalc.text = ""
+            currentResult = ""
+            updateScreens()
         }
 
 
@@ -59,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
 
         equalsButton.setOnClickListener {
-            textInfo.text = try {
+            currentResult = try {
                 eval (currentExp).toString()
             } catch (err : RuntimeException) {
 
@@ -70,6 +93,7 @@ class MainActivity : AppCompatActivity() {
                 ""
             }
 
+            updateScreens()
         }
  
     }
